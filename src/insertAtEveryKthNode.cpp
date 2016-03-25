@@ -20,5 +20,23 @@ struct node {
 };
 
 struct node * insertAtEveryKthNode(struct node *head, int K) {
-	return NULL;
+	if (head==nullptr||K<=0)
+	   return NULL;
+	struct node *p=head,*q;
+	int count=1;
+	while (p)
+	{
+		if (count == K)
+		{
+			q = (struct node*)malloc(sizeof(struct node));
+			q->num = K;
+			q->next = p->next;
+			p->next = q;
+			p = p->next;
+			count = 0;
+		}
+		p = p->next;
+		count++;
+	}
+	return head;
 }
